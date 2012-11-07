@@ -1,0 +1,278 @@
+﻿
+/*
+ *author:haix
+ *date:2012-6-3
+ *
+ *该样式文件用于自定义模式,样式属性全部是按照字母顺序编写
+ */
+ 
+ 
+ /*
+ * 公用样式
+ * 适用于所有模块
+ */
+/*--------------------lightbox----------------------*/
+#lightBox{
+	width:100%; 
+	height:100%; 
+	position:absolute; 
+	left:0; 
+	top:0; 
+	right:0;
+	z-index:100;
+	background-color:#999999;
+	opacity:0.8;
+	display:none;
+}
+/*--------------------end of lightbox----------------------*/
+/*--------------------topbar-------------------------*/
+#topbar{
+	background-color:#2D2D2D;
+	border-bottom:1px solid #222;
+	height:28px;
+}
+
+#topbar .topbar_left{
+	color:#CCCCCC;
+	float:left;
+	font:13px/1 Arial;
+	height:28px;
+	line-height:28px;
+	margin-left:100px;
+	text-align:center;
+}
+.topbar_left #todaydate{
+	margin-right:5px;
+	margin-left:5px;
+	font-weight:bold;
+}
+
+#topbar .topbar_right{
+	color:#CCCCCC;
+	float:right;
+	font:13px/1 Arial;
+	height:28px;
+	line-height:28px;
+	margin-right:100px;
+	text-align:center;
+}
+
+#topbar .topbar_right a{
+	color:#CCCCCC;
+	display:inline-block;
+	height:28px;
+	margin:0 5px;
+	text-decoration:none;
+}
+
+#topbar .topbar_right a span{
+	display:inline-block;
+	height:28px;
+	margin:0 5px;
+}
+
+#topbar .topbar_right a:hover{
+	background-color:#555555;
+}
+
+#topbar .topbar_right a:hover span{
+	cursor:pointer;
+	color:white;
+	background-color:#555555;
+}
+/*--------------------end of topbar-------------------------*/
+/*---------toolbar-------------------*/
+.toolbar{
+	background-color:#EEEEEE;
+	border-bottom:2px solid #808080;
+	font-size:14px;
+	font-family: 'Play','微软雅黑',sans-serif,Arial,'宋体';
+	font-style:bold;
+	height:20px;
+	width:590px;
+	margin:0 0 20px 5px;
+	text-indent:5px;
+	line-height:20px;
+}
+
+.toolbar span{
+	float:left;
+}
+
+.toolbar .set{
+	position:relative;
+	left:3px;
+	top:2px;
+}
+
+.toolbar .closediv{
+	float:right;
+	margin:2px 5px 0 0;
+}
+
+.toolbar .set:hover, .toolbar .closediv:hover{
+	cursor:pointer;
+}
+
+.clearfix{
+	clear:both;
+}
+
+/*---------end of toolbar------------*/
+
+
+/*
+ * 私有样式
+ * 各个模块单独的样式设置
+ */
+/*--------------------allSkin-------------------------*/
+#allSkin{
+	border-bottom:1px solid #C7C7C7;
+	background-color:#FCFCFC;
+	display:none;
+	height:200px;
+}
+/*--------------------end of allSkin-------------------------*/
+
+#content{
+	margin:0 auto;
+	min-width:880px;
+	width:960px;
+}
+
+#logo{
+	height:120px;
+	min-width:880px;
+	margin-top:10px;
+	text-align:center;
+	width:960px;
+}
+/*-----------------------searchbox--------------------------------*/
+#searchbox{
+	border:none;
+	width:600px;
+	height:140px;
+	font:15px/1 Arial;
+	margin:0 auto;
+	background-color:#EEEEEE;
+	border-radius:2px;
+	position:absolute;
+	left:350px;
+	top:180px;
+}
+
+/*---searchtabs--*/
+#searchtabs{
+	margin-left:180px;
+	margin-bottom:3px;
+}
+
+#searchtabs a{
+	margin:0 3px;
+}
+
+/*---searchinput----*/
+#searchinput {
+	width:540px;
+	height:30px;
+	overflow:hidden;
+	margin-left:50px;
+	margin-bottom:7px;
+}
+
+#searchinput a{
+	height:3px;
+	width:100px;
+	overflow:hidden;
+	position:relative;
+}
+
+#searchinput img{
+	position:absolute;
+	left:0px;
+	top:-7px;
+}
+
+#searchinput #search-kw{
+	border-top:1px solid #9A9A9A;
+	border-right:1px solid #CDCDCD;
+	border-bottom:1px solid #CDCDCD;
+	border-left:1px solid #9A9A9A;
+	margin-left:95px;
+	font:16px Arial;
+	padding:4px 7px;
+	width:300px;
+	height:20px;
+}
+
+#searchinput .searchbtn{
+	width:70px;
+	height:30px;
+	margin-left:-5px;
+	border:1px solid #9A9A9A;
+	/*padding-bottom:2px;*/
+}
+
+#searchinput .searchbtn:hover{
+	background-color:#9A9A9A;
+	cursor:pointer;
+}
+
+/*---searchengin----*/
+#searchengine{
+	margin-left:180px;
+}
+/*-----------------------end of searchbox--------------------------*/
+
+/*-----------------------personal-websites-------------------------*/
+
+#p_website{
+	border:none;
+	width:600px;
+	height:180px;
+	margin:0 auto;
+	margin-top:10px;
+	background-color:#EEEEEE;
+	border-radius:2px;
+	position:absolute;
+	left:350px;
+	top:340px;
+}
+
+#p_website .siteitems{
+	margin-left:10px;
+}
+
+#p_website ul{
+	display:inline;
+}
+
+#p_website ul li{
+	display:inline-block;
+	float:left;
+	width:105px;
+	padding:5px 5px;
+}
+
+#p_website ul li a{
+	text-decoration:none;
+}
+
+#p_website ul .name{
+	color:#0000BB;
+}
+
+#p_website ul .name:visited{
+	color:#0000BB;
+}
+
+#p_website ul .name:hover{
+	color:#0000BB;
+	text-decoration:underline;
+}
+
+#p_website ul .name:active{
+	color:#0000BB;
+}
+
+/*-----------------------end of personal-websites-------------------------*/

@@ -1,0 +1,300 @@
+﻿
+	.popupWin{
+		background-color:#FFFFFF;
+		border-radius:2px;
+		overflow:auto;
+		z-index:999;
+	}
+	.popupWin .inputBox{
+		border-bottom:1px solid #999999;
+	}
+	.popupWin .popupWin_close{
+		height:20px;
+		float:right;
+		font-size:1.3em;
+		font-family: 'Play', sans-serif;
+		margin-right:5px;
+		color:#FF55AA;
+		font-style:bold;
+		position:relative;
+		left:6px;
+	}
+	
+	.popupWin .content_popupWin{
+		padding:0 10px 10px 70px;
+	}
+	
+	.popupWin .content_popupWin h1{
+		clear:both;
+		font-size:1.8em;
+		font-family: 'Jura', sans-serif;
+		color:#00CCCC;
+		text-indent:15px;
+		padding-bottom:2px;
+		margin-bottom:35px;
+		border-bottom:2px solid #808080;
+	}
+	#login_popupWin fieldset, #register_popupWin fieldset{
+		margin-left:25px;
+		margin-bottom:20px;
+		position:relative;
+	}
+	#login_popupWin form label{
+		position:absolute;
+		width:70px;
+		text-align:right;
+		left:-75px;
+		margin-right:4px;
+	}
+	#register_popupWin form label{
+		position:absolute;
+		width:80px;
+		text-align:right;
+		left:-75px;
+		margin-right:4px;
+	}
+	#register_popupWin .protocol{
+		margin-left:5px;
+	}
+	
+	#register_popupWin .itip{
+		margin-left:5px;
+		font-size: 0.8em;
+		color:#808080;
+	}
+	
+	.popupWin form #rememberMe{
+		position:relative;
+		left:0;
+	}
+	
+	#login_popupWin form .loginbtn, #register_popupWin form .registerbtn{
+		float:right;
+		border-radius:3px;
+		font-size:16px;
+		background:#FF6600;
+		color:#fff;
+		padding:0.5em 1.2em;
+		cursor: pointer; 
+	}
+
+	#login_popupWin form .loginbtn:hover, #register_popupWin form .registerbtn:hover{
+		background:#FF0033;
+	}
+
+	#login_popupWin form .registerlink, #register_popupWin form .loginlink{
+		float:right;
+		font-size:1em;
+		line-height:2.4em;
+		margin-right:1em;
+		color:blue;
+	}
+	
+	#login_popupWin form .registerlink:hover, #register_popupWin form .loginlink:hover{
+		cursor:pointer;
+		text-decoration:underline;
+	}
+	
+	.popupWin .popupWin_close:hover{
+		color:#FF6600;
+		cursor: pointer; 
+	 }
+	 
+/*config_popupWin*/
+	.popupWin #back{
+		font-size:.5em;
+		color:#00CCCC;
+		margin-left:90px;
+	}
+	.popupWin .hit{
+		background-color:#D9E9F6;
+		height:25px;
+		line-height:25px;
+		margin-bottom:10px;
+	}
+	
+	.popupWin #back .undo a{
+		color:#2584CE;
+		text-decoration:none;
+		margin-right:10px;
+	}
+	
+	.popupWin #back .save a{
+		color:#2584CE;
+		text-decoration:none;
+		margin-left:10px;
+	}
+	
+	#config_popupWin .content_popupWin{
+		padding:0 20px 10px 20px;
+	}
+	
+	#config_popupWin h1{
+		margin-bottom:10px;
+	}
+	
+	#config_popupWin #tab_config{
+		height:30px;
+		background-color:#2584CE;
+	}
+	#config_popupWin ul{
+		height:26px;
+		margin-left:20px;
+		padding-top:5px;
+	}
+	
+	#config_popupWin ul li{
+		color:#EEEEEE;
+		display:inline-block;
+		float:left;
+		width:100px;
+		height:25px;
+		line-height:25px;
+		border-left:1px solid #EEEEEE;
+		text-align:center;
+	}
+	
+	#config_popupWin ul li:hover{
+		color:#FFFFFF;
+		cursor:pointer;
+	}
+	
+	/*basic_config*/
+	#basic_config{
+		padding:20px 10px 15px 20px;
+	}
+	
+	#basic_config p{
+		text-indent:10px;
+		font-weight:bold;
+	}
+	
+	#basic_config .item{
+		padding-top:10px;
+	}
+	
+	#basic_config p .radio{
+		float:right;
+		margin-right:70px;
+	}
+	
+	#basic_config p .radio label{
+		padding:0 10px;
+	}
+	
+	#basic_config .itip{
+		text-indent:0;
+		padding-left:25px;
+		color:#CCCCCC;
+		font-weight:normal;
+		font-size:.7em;
+	}
+	
+	/*module_config*/
+	#module_config{
+		width:100%;
+		padding:20px 0 15px 0;
+	}
+	
+	#module_config #modulehit{
+		font-weight:bold;
+		font-size:1em;
+		color:#000000;
+		text-align:center;
+	}
+	
+	#module_config #modulehit .center{
+		font-size:1em;
+		color:#000000;
+		text-align:center;
+	}
+	
+	#module_config .left{
+		width:165px;
+		float:left;
+	}
+	
+	#module_config .center{
+		width:265px;
+		float:left;
+		font-size:.7em;
+		color:#AAAAAA;
+		text-align:left;
+	}
+	
+	#module_config .right{
+		width:130px;
+		float:left;
+	}
+	
+	#module_config p{
+		height:25px;
+		line-height:25px;
+		text-align:center;
+		margin-bottom:5px;
+	}
+	
+	#module_config p:hover{
+		background-color:#F1F1F1;
+	}
+	
+	#addMyselfModule #addbtn {
+		width:165px;
+		text-align:center;
+		color:#2584CE;
+		height:25px;
+		line-height:25px;
+	}
+	
+	#addMyselfModule #addbtn:hover {
+		color:blue;
+		background-color:#F1F1F1;
+		border-radius:2px 2px 0 0;
+		cursor:pointer;
+	}
+	
+	#addMyselfModule form{
+		width:100%;
+		background-color:#F1F1F1;
+		padding:10px 0 10px 10px; 
+	}
+	
+	#addMyselfModule form p{
+		text-align:left;
+		text-indent:20px;
+	}
+	
+	#addMyselfModule form p input{
+		width:300px;
+		border:none;
+		border-bottom:1px solid #999999;
+		background-color:#F1F1F1;
+		margin-left:5px;
+	}
+	
+	/*entrance_config*/
+	#entrance_config{
+		width:100%;
+		padding:20px 0 15px 0;
+	}
+	
+	#entrance_config .item{
+		margin-bottom:10px;
+	}
+	
+	#entrance_config .item em{
+		float:left;
+		background-color:#F6F6F6;
+		font-weight:bold;
+		width:60px;
+		height:80px;
+		margin-right:20px;
+		border-bottom:1px solid #E7E7E7;
+	}
+	
+	
+	#entrance_config .item a{
+		display:inline-block;
+		width:90px;
+		padding-right:5px;
+	}

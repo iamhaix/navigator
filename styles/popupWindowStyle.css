@@ -1,0 +1,199 @@
+﻿@CHARSET "utf-8";
+/**********************popupWindow*******************/
+#login-window,#register-window{
+	
+	position:fixed;
+	background:rgba(0,0,0,.2);
+	_position:absolute; /* hack for internet explorer 6*/ 
+	*position:absolute; /* hack for internet explorer 7*/  	
+	height:100%;   
+	width:100%;
+	left:0px;
+	top:0px;
+	padding:12px;	
+	font-size:13px;   
+	z-index:99;
+}
+#register-window h1, #login-window h1{
+
+	text-align:left;   
+	color:#6FA5FD;   
+	font-size:22px;   
+	font-weight:700;   
+	border-bottom:1px dotted #D3D3D3;   
+	padding-bottom:2px;   
+	margin-bottom:20px; 
+}
+
+#register-window form,#login-window form{
+	padding:2em;
+	margin-bottom:12px;
+	background:#fff;
+	border-radius:.5em;
+	border:2px solid #cecece;
+	position:absolute;
+	_position:absolute; /* hack for internet explorer 6*/  
+	*position:absolute; /* hack for internet explorer 7*/  
+	left:50%;
+}
+
+#register-window form{
+	top:100px;
+	width:500px;
+	margin-left:-250px;
+}
+
+#login-window form{
+	top:200px;
+	width:300px;
+	margin-left:-150px;
+}
+
+#login-window form .login{
+	float:right;
+	border-radius:3px;
+	font-size:16px;
+	background:#FF6600;
+	color:#fff;
+	padding:0.5em 1em;
+	cursor: pointer; 
+}
+#login-window form .login:hover{
+	background:#FF0033;
+}
+
+#login-window form .register{
+	float:right;
+	font-size:1em;
+	line-height:2.4em;
+	margin-right:1.5em;
+	color:blue;
+}
+
+#register-window form .login{
+	float:right;
+	font-size:1.2em;
+	line-height:2.4em;
+	color:blue;
+}
+
+#register-window form .register{
+	float:right;
+	border-radius:3px;
+	font-size:15px;
+	width:60px;
+	background:#FF6600;
+	color:#fff;
+	padding:0.5em 1em;
+	cursor: pointer;	
+}
+
+#register-window form .register:hover{
+	background:#FF0033;
+}
+
+#login-window label, #register-window label{
+	display:-moz-inline-box;
+	display:inline-block;
+	width:65px;
+	font-size:1em;
+	text-align:right;
+}
+
+#login-window form label#rememberMe{
+	text-align:left;
+	width:60px;
+}
+
+#login-window form  .rememberMe{
+	padding-top:5px;
+	padding-left: 50px;
+}
+
+#register-window em{
+	display:inline-block;
+	width:18px;
+	height:18px;
+	margin-left:7px;
+	position:relative;
+	top:3px;
+}
+
+.close-popup-window{
+	font-size:20px;   
+	line-height:14px;
+	color:#6fa5fd !important;
+	font-weight:700;
+	display:-moz-inline-block;
+	display:inline-block;
+	width:25px;
+	text-align:center;
+}
+
+.close-popup-window:hover{
+	color:#FF6600;
+	cursor: pointer; 
+ }
+ 
+#login-window form .close-popup-window{   
+	position:relative;
+	top:-20px;
+	left:300px;
+	_position:absolute; /* hack for internet explorer 7*/
+	*position:absolute; /* hack for internet explorer 6*/    	
+ }
+ 
+#register-window form .close-popup-window{
+	position:relative;
+	left:475px;   
+	top:-65px;	
+}
+
+fieldset{
+	margin-bottom:10px;
+	padding-left:10px;
+}
+
+#register-window  fieldset#proto{
+	padding-top:10px;
+	padding-left:30px;
+}
+
+input {
+	color:#000000;
+	padding:1.5px;
+	border:none;
+	background-color:#99FF99;
+} 
+
+#login-window form input{
+	width:150px;
+}
+
+#register-window form input{
+	width:180px;
+}
+
+#login-window form input[type="checkbox"],#register-window form input[type="checkbox"]{
+	width:20px;
+	background-color:#ffffff;
+}
+
+#register-window form span{
+	margin-left:25px;
+	color:#808080;
+}
+/**********************popupWindow  完*******************/
+
+#tip{
+	background:rgba(0,0,0,.6);
+	border-radius:2px;
+	padding:.5em .8em;
+	position:fixed;
+	left:50%;
+	top:280px;
+	font-size:1.5em;
+	color:#fff;
+	z-index:100;
+	font-family:"微软雅黑";
+}

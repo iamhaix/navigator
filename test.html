@@ -1,0 +1,634 @@
+﻿<!DOCTYPE html>
+<head>
+<title>新导航</title>
+<script type="text/javascript">
+	var $ = jQuery = function(){
+		return new jQuery.fn.init();
+	}
+	
+	jQuery.fn = jQuery.prototype = {
+		init:function(){
+			this.length = 1;
+			this.test = function(){
+				return this.length;
+			}
+			return this;
+		},
+		
+		
+		jquery:'2.2.1',
+		length:0,
+		size:function(){
+			return this.length;
+		}
+	}
+	jQuery.fn.init.prototype = jQuery.fn;
+	//alert($().length);
+	//alert($().jquery);
+	//alert($().size());
+	//alert($().test());
+	
+	var reg = /^\.(.*)$/;
+	var str = ".redw21";
+	var s = reg.test(str);
+	//~alert(s);
+	//~alert(RegExp["$1"]);
+	//~alert(str);
+	
+	/*
+ *选择器，选择DOM节点，可通过id|class|tagName获取
+ *id：以#开头，如  #sid
+ *class：以.开始，如  .sclass
+ *tagName：直接写tag的name即可，如  em
+ */
+var $ = function(i){
+	var reg_id = /^#(.*)$/,
+		reg_class = /^\.(.*)$/;
+	var s = null;
+	if(reg_id.test(i)){
+	//如果以#开头，则按照id处理
+		var sid = RegExp["$1"];
+		s = document.getElementById(sid);
+		if(s == null){
+			console.log('can not find id: \"'+ sid + '\"');
+		}
+	}else if(reg_class.test(i)){
+	//如果以.开头，则按照class处理
+		var iclass = RegExp["$1"];
+		s = document.getElementsByClassName(iclass);
+		if(s.length == 0){
+			console.log('can not find class: \"'+ iclass + '\"');
+		}
+	}else{
+	//其他情况，按照tag处理
+		s = document.getElementsByTagName(i);
+		if(s.length == 0){
+			console.log('can not find tagName: \"'+ i + '\"');
+		}
+	}
+	
+	return s;
+}
+
+/*
+ *移除某一DOM节点
+ *
+ */
+var remove = function(i){
+
+	var n = $("#"+i);
+	n.parentNode.removeChild(n);
+}
+
+/*
+ *动画：逐渐淡入
+ *
+ *@e 事件源event
+ *@oncomplete 回调函数，以e为参数。动画结束后调用
+ *@time 动画持续时间,默认500ms
+ */
+var fadeIn = function(e, oncomplete, time){
+	if(typeof e === "string") 
+		var v = $("#" + e);
+	if(!time) time = 500;
+	
+	//使用Math.sqrt作为一个简单的“缓动函数”来创建动画
+	//精巧的非线性：一开始淡入较慢，越来越快
+	var ease = Math.sqrt;
+	
+	//动画开始时间
+	var start = (new Date()).getTime();
+	animate();
+	
+	function animate(){
+		//已消耗的时间
+		var elapsed = (new Date()).getTime() - start;
+		//消耗的是总时间的几分之几？
+		var fraction = elapsed/time;
+		if(fraction < 1){
+		//如果动画还没有完成
+			//改变透明度
+			var opacity = ease(fraction);
+			//设置在v上
+			v.style.opacity = String(opacity);
+			//if(H.isIE)
+				//v.style.filter = 'alpha(opacity='+opacity*100+')'; //ie
+			//调动下一帧
+			setTimeout(animate, Math.min(25, time-elapsed));
+		}else{
+		//否则，动画完成
+			v.style.opacity = "1";
+			//if(H.isIE)
+				//v.style.filter = 'alpha(opacity=100)'; //ie
+			if(oncomplete)
+				oncomplete(e);
+		}
+	}
+}
+
+var fragment = function(html){
+	var frag = document.createDocumentFragment();
+	var elt = document.createElement('div');
+	elt.innerHTML = html;
+	while(elt.firstChild){
+		frag.appendChild(elt.firstChild);
+	}
+	return frag;
+}
+/*
+ *
+ *创建一个弹出窗口的方法
+ *
+ *
+ */
+var createPopupWin = function(option){
+	
+	if ($('#'+option.id))
+		remove(option.id);
+	var popupWin = {};
+	popupWin.window = fragment('<div id="'+ option.id +'\" class="popupWin"><div class="popupWin_inner_box">'+(option.content || '')+'</div></div>');
+	
+	document.body.appendChild(popupWin.window);
+	
+	//显示灯箱效果
+	$('#lightBox').style.display = "block";
+	popupWin.close = function(){
+		remove(option.id);
+	}
+	
+	$('.popupWin_close')[0].onclick = function(){
+		popupWin.close();
+	}
+	//~H.addEventHandler($('#popupWin_close'), 'click', popupWin.close, false);
+	
+	//添加样式
+	var p = $('#'+option.id);
+	p.style.position = "relative";
+	p.style.width = option.width? (option.width + "px") : "400px";
+	p.style.height = option.height? (option.height + "px") : "400px";
+	p.style.top = option.top? (option.top + "px") : "100px";
+	p.style.marginRight = "auto";
+	p.style.marginLeft = "auto";
+	
+	fadeIn(option.id, null, 1000);
+	
+	return popupWin;
+}
+
+/*
+ *扩展String类，trim函数
+ *
+ */
+String.prototype.trim = function(){
+	//匹配字符前后空白的正则
+	var reg = /^\s+(.*?)\s+$/;
+	return this.replace(reg, "$1");
+}
+
+
+
+//------------------------------------------------
+	/*
+	 *日期转换，公立到农历
+	 *
+	 */
+	var lunarinfo = [0x04bd8,0x04ae0,0x0a570,0x054d5,0x0d260,0x0d950,0x16554,0x056a0,0x09ad0,0x055d2,      
+	0x04ae0,0x0a5b6,0x0a4d0,0x0d250,0x1d255,0x0b540,0x0d6a0,0x0ada2,0x095b0,0x14977,      
+	0x04970,0x0a4b0,0x0b4b5,0x06a50,0x06d40,0x1ab54,0x02b60,0x09570,0x052f2,0x04970,      
+	0x06566,0x0d4a0,0x0ea50,0x06e95,0x05ad0,0x02b60,0x186e3,0x092e0,0x1c8d7,0x0c950,      
+	0x0d4a0,0x1d8a6,0x0b550,0x056a0,0x1a5b4,0x025d0,0x092d0,0x0d2b2,0x0a950,0x0b557,      
+	0x06ca0,0x0b550,0x15355,0x04da0,0x0a5d0,0x14573,0x052d0,0x0a9a8,0x0e950,0x06aa0,      
+	0x0aea6,0x0ab50,0x04b60,0x0aae4,0x0a570,0x05260,0x0f263,0x0d950,0x05b57,0x056a0,      
+	0x096d0,0x04dd5,0x04ad0,0x0a4d0,0x0d4d4,0x0d250,0x0d558,0x0b540,0x0b5a0,0x195a6,      
+	0x095b0,0x049b0,0x0a974,0x0a4b0,0x0b27a,0x06a50,0x06d40,0x0af46,0x0ab60,0x09570,      
+	0x04af5,0x04970,0x064b0,0x074a3,0x0ea50,0x06b58,0x055c0,0x0ab60,0x096d5,0x092e0,      
+	0x0c960,0x0d954,0x0d4a0,0x0da50,0x07552,0x056a0,0x0abb7,0x025d0,0x092d0,0x0cab5,      
+	0x0a950,0x0b4a0,0x0baa4,0x0ad50,0x055d9,0x04ba0,0x0a5b0,0x15176,0x052b0,0x0a930,      
+	0x07954,0x06aa0,0x0ad50,0x05b52,0x04b60,0x0a6e6,0x0a4e0,0x0d260,0x0ea65,0x0d530,      
+	0x05aa0,0x076a3,0x096d0,0x04bd7,0x04ad0,0x0a4d0,0x1d0b6,0x0d250,0x0d520,0x0dd45,      
+	0x0b5a0,0x056d0,0x055b2,0x049b0,0x0a577,0x0a4b0,0x0aa50,0x1b255,0x06d20,0x0ada0];  
+		 
+	//传回农历 y年的总天数      
+	var lyeardays = function(y) {      
+		var i, sum = 348 ;     
+		for(i=0x8000; i>0x8; i>>=1) 
+			sum += (this.lunarinfo[y-1900] & i)? 1: 0 ;     
+		return(sum+this.leapdays(y));      
+	}
+		
+	//传回农历 y年闰月的天数      
+	var leapdays = function(y) {      
+		if(this.leapmonth(y))  
+			return((this.lunarinfo[y-1900] & 0x10000)? 30: 29);      
+		else 
+			return(0);      
+	}
+		
+	//传回农历 y年闰哪个月 1-12 , 没闰传回 0      
+	var leapmonth = function(y) { 
+		return(this.lunarinfo[y-1900] & 0xf);
+	}   
+	  
+	//传回农历 y年m月的总天数      
+	var monthdays = function(y,m) { 
+		return( (this.lunarinfo[y-1900] & (0x10000>>m))? 30: 29 );
+	}
+	 
+	//算出农历, 传入日期物件, 传回农历日期物件      
+	//该物件属性有 .year .month .day .isleap .yearcyl .daycyl .moncyl
+	var lunar = function(objdate) {      
+		var i, leap=0, temp=0;      
+		var basedate = new Date(1900,0,31);      
+		var offset   = (objdate - basedate)/86400000;      
+		this.daycyl = offset + 40;      
+		this.moncyl = 14;      
+		for(i=1900; i<2050 && offset>0; i++) {      
+			temp = lyeardays(i);      
+			offset -= temp;      
+			this.moncyl += 12;      
+		}      
+		if(offset<0) {      
+			offset += temp;      
+			i--;      
+			this.moncyl -= 12;      
+		}      
+		this.year = i;      
+		this.yearcyl = i-1864;      
+		leap = leapmonth(i); //闰哪个月      
+		this.isleap = false;     
+		for(i=1; i<13 && offset>0; i++) {      
+			//闰月      
+			if(leap>0 && i==(leap+1) && this.isleap==false)      
+			{ --i; this.isleap = true; temp = leapdays(this.year); }      
+			else     
+			{ temp = monthdays(this.year, i); }      
+			//解除闰月      
+			if(this.isleap==true && i==(leap+1)) this.isleap = false     
+			offset -= temp      
+			if(this.isleap == false) this.moncyl ++      
+		}      
+		if(offset==0 && leap>0 && i==leap+1){      
+			if(this.isleap)      
+			{ this.isleap = false; }      
+			else     
+			{ this.isleap = true; --i; --this.moncyl;}      
+		}
+		if(offset<0){ 
+			offset += temp; 
+			--i;
+			--this.moncyl; 
+		}      
+		this.month = i; 
+		this.day = offset + 1;     
+	}
+
+	//农历的单位    
+	var cday = function(m,d){      
+		var nstr1 = new Array('日','一','二','三','四','五','六','七','八','九','十');      
+		var nstr2 = new Array('初','十','廿','卅','　');      
+		var s;      
+		if (m>10){
+			s = '十'+nstr1[m-10];
+		} else {
+			s = nstr1[m];
+		} 
+		s += '月';
+		
+		if (s=="十二月") 
+			s = "腊月";      
+		if (s=="一月") 
+			s = "正月";
+			
+		switch (d) {      
+			case 10:s += '初十'; break;      
+			case 20:s += '二十'; break;      
+			case 30:s += '三十'; break;      
+			default:s += nstr2[Math.floor(d/10)]; s += nstr1[d%10];      
+		}      
+		return(s);      
+	}
+	
+var X  = {};
+	//入口函数
+	X.solarday =function(now){  
+		var sdobj = new Date(now.getFullYear(),now.getMonth(),now.getDate());      
+		var ldobj = new lunar(sdobj);      
+		var cl = '';       
+		//农历bb'+(cld[d].isleap?'闰 ':' ')+cld[d].lmonth+' 月 '+cld[d].lday+' 日      
+		var tt = cday(ldobj.month,ldobj.day);      
+		document.write(now.getFullYear()+"年"+(now.getMonth()+1)+"月"+now.getDate()+"日 农历"+tt+"");      
+	} 
+
+
+var getEvent = function(e){
+	var evt = e?e: (window.event ? window.event : null);
+	return evt;
+}
+
+/*
+ *阻止事件默认行为
+ */
+var preventDefault = function(event){
+    if (event.preventDefault){ 
+	//DOM标准处理
+        event.preventDefault();       
+    } else {  
+	//IE下处理	
+        event.returnValue = false;      
+    }   
+}
+/*
+ *阻止事件冒泡处理
+ *
+ */
+var stopPropagation = function(event){      
+    if (event.stopPropagation){        
+	//DOM标准处理
+        event.stopPropagation();     
+    } else {     
+	//IE下处理	
+        event.cancelBubble = true;     
+    }    
+}      
+var getScrollOffsets = function(w){
+	//使用指定窗口，若不带参数，则使用当前窗口
+	var w = w||window;
+	
+	//除了IE8及更早的版本以外，其他浏览器均可以用
+	if (w.pageXOffset != null) {
+		return {x:w.pageXOffset, y:w.pageYOffset};
+	}
+	var d = w.document;
+	if (document.compatMode == "CSS1Compat") {
+		return {x:d.documentElement.scrollLeft, y:d.documentElement.scrollTop};
+	}
+	return {x:d.body.srollLeft, y: d.body.srollTop};
+}
+/* 
+ *拖动绝对定位的HTML元素
+ *整理自《JavaScript权威指南第6版》P.462
+ *注意：必须是绝对定位的元素
+ *
+ *@el  要拖动的元素
+ *@event mousedown事件对象
+ */
+var drag = function(el, event){
+
+	//初始鼠标位置，转换为文档坐标
+	var scroll = getScrollOffsets();
+	var startX = event.clientX + scroll.x;
+	var startY = event.clientY + scroll.y;
+	
+	//在文档坐标下，待拖动元素的起始位置
+	var origX = el.offsetLeft;
+	var origY = el.offsetTop;
+	console.log(origX);
+	//计算鼠标触发位置坐标和元素左上角之间的距离
+	var deltaX = startX - origX;
+	var deltaY = startY - origY;
+	
+	//注册用于响应接着mousedown事件发生的mouseover和mouseup事件的事件处理程序
+	if(document.addEventListener){
+		document.addEventListener( "mousemove", moveHandler, true);
+		document.addEventListener( "mouseup", upHandler, true);
+	}else if (document.attachEvent) {
+		el.setCapture();
+		el.attachEvent("onmousemove", moveHandler);
+		el.attachEvent("onmouseup", upHandler);
+		//作为mouseup事件看待鼠标捕获的丢失
+		el.attachEvent("onlosecapture", upHandler);
+	}
+
+	//不让其他元素看见我们处理了该元素
+	stopPropagation(event);
+	preventDefault(event);
+	
+	/*
+	 *元素正被拖动时，即mousemove事件
+	 *
+	 */
+	function moveHandler(e){
+		e = getEvent(e);
+		var scroll = getScrollOffsets();
+		el.style.left = (e.clientX + scroll.x - deltaX) + "px";
+		el.style.top = (e.clientY + scroll.y - deltaY) + "px";
+
+		stopPropagation(event);
+	}
+	
+	/*
+	 *元素正被拖动时，即mouseup事件
+	 *
+	 */
+	 function upHandler(e){
+		e = getEvent(e);
+	
+		//注册用于响应接着mousedown事件发生的mouseover和mouseup事件的事件处理程序
+		if(document.addEventListener){
+		
+			document.removeEventListener( "mouseup", upHandler, true);
+			document.removeEventListener( "mousemove", moveHandler, true);
+		}else if (document.attachEvent) {
+		
+			el.detachEvent("onlosecapture", upHandler);
+			el.detachEvent("onmouseup", upHandler);
+			el.detachEvent("onmousemove", moveHandler);
+			el.releaseCapture();
+		}
+		
+		stopPropagation(event);
+	}
+}
+
+    
+//-------------------------------------------------
+
+	//测试innerHTML
+	window.onload = function(){
+		//var r = $("#1");
+		//if(r){
+		//r.onclick = function(){
+		//alert(r.outerHTML);
+			//r.outerHTML = "ddddd";
+			//alert(r.outerHTML);
+		//}
+		//}else{
+			//alert('no');
+		//}
+		
+		/*createPopupWin({//登录
+			id:'login_popupWin',
+			content:'<form class="content_popupWin" ><div><span class="popupWin_close">X</span></div><h1>Login</h1><fieldset><label for="userName">用户名: </label><input type="text" name="userName" id="userName" class="inputBox"/></fieldset><fieldset><label for="password">密   码: </label><input type="password" name="password" id="password" class="inputBox"/></fieldset><fieldset class="rememberMe"><input type="checkbox" class="rememberMe" name="rememberMe"/><label for="rememberMe" id="rememberMe"> 自动登录</label></fieldset> <fieldset><span class="loginbtn">登  录</span><a class="registerlink">免费注册</a></fieldset></form>',
+			width:350
+		});*/
+		
+		/*createPopupWin({//注册
+			id:'register_popupWin',
+			top:100,
+			width:550,
+			content:'<form class="content_popupWin"><div><span class="popupWin_close">X</span><div><h1>Rigester</h1><fieldset><label for="userName">用户名：</label><input type="text" id="userName" name="userName" /><em></em><span class="itip">10个字符以内，中英文都行</span></fieldset><fieldset><label for="email">邮箱：</label><input type="email" id="email" name="email"/><em></em><span class="itip">您的常用邮箱,作为另一个登录名</span></fieldset><fieldset><label for="password">密码：</label><input type="password" id="password" name="password"/><em></em><span class="itip">6-25位数字字母组合</span></fieldset><fieldset><label for="pwdAgain">确认密码：</label><input type="password" id="pwdAgain" name="pwdAgain"/><em></em><span class="itip">确认密码</span></fieldset><fieldset id="proto"><input type="checkbox" id="acceptProtocol" class="protocol" checked="checked"><a class="protocol" href="others/protocol.html">接受新导航用户协议</a></fieldset><fieldset><span class="registerbtn">立即注册</span><a class="loginlink">登录</a></fieldset></form>'
+		});*/
+		
+		
+		//测试trim()
+		/*var str = "  er32fdv rwer   ";
+		var s = str.trim();
+		alert('[' +s+ ']');*/
+		
+		
+		//var d = new Date();
+		//X.solarday(d);
+		/*var qqe = $('.move');
+		var len = qqe.length;
+		for (var i = 0; i < len; i++) {
+			qqe[i].onmousedown = function(e){
+				drag(this.parentNode, e)
+			}
+		}*/
+		
+		var g= Array('1','4','6','0','7');
+		/*var h = g.slice(0);
+		var t = h.length;
+		for(var i = 0 ; i < t; i++){
+			var j = h.splice(i,1);
+			var s = h.join('|');
+			console.log(s);
+			h = g.slice(0);
+		}*/
+		console.log(g.indexOf('4'));
+		/*
+		for(var i=0;i<gp.length;i++){
+		console.log('g = '+g[i]);console.log('gp = '+gp[i]);
+		if(gp[i]==g[i])alert("位置:"+i);
+		}*/
+	}
+	
+	
+</script>
+<link rel="stylesheet" type="text/css" href="styles/reset.css" />
+<link href='http://fonts.googleapis.com/css?family=Play:700|Jura:600' rel='stylesheet' type='text/css'>
+<style type="text/css">
+	#lightBox{
+		width:100%; 
+		height:100%; 
+		position:absolute; 
+		left:0; 
+		top:0; 
+		right:0;
+		z-index:100;
+		background-color:#999999;
+		opacity:0.8;
+		display:none;
+	}
+	.popupWin{
+		background-color:white;
+		border-radius:2px;
+		z-index:900;
+	}
+	
+	.popupWin .inputBox{
+		border-bottom:1px solid #999999;
+	}
+	.popupWin .popupWin_close{
+		height:20px;
+		float:right;
+		font-size:1.3em;
+		font-family: 'Play', sans-serif;
+		margin-right:5px;
+		color:#FF55AA;
+		font-style:bold;
+		position:relative;
+		left:6px;
+	}
+	
+	.popupWin .content_popupWin{
+		padding:0 10px 10px 70px;
+	}
+	
+	.popupWin .content_popupWin h1{
+		clear:both;
+		font-size:1.8em;
+		font-family: 'Jura', sans-serif;
+		color:#00CCCC;
+		text-indent:15px;
+		padding-bottom:2px;
+		margin-bottom:35px;
+		border-bottom:2px solid #808080;
+	}
+	#login_popupWin fieldset, #register_popupWin fieldset{
+		margin-left:25px;
+		margin-bottom:20px;
+		position:relative;
+	}
+	#login_popupWin form label{
+		position:absolute;
+		width:70px;
+		text-align:right;
+		left:-75px;
+		margin-right:4px;
+	}
+	#register_popupWin form label{
+		position:absolute;
+		width:80px;
+		text-align:right;
+		left:-75px;
+		margin-right:4px;
+	}
+	#register_popupWin .protocol{
+		margin-left:5px;
+	}
+	
+	#register_popupWin .itip{
+		margin-left:5px;
+		font-size: 0.8em;
+		color:#808080;
+	}
+	
+	.popupWin form #rememberMe{
+		position:relative;
+		left:0;
+	}
+	
+	#login_popupWin form .loginbtn, #register_popupWin form .registerbtn{
+		float:right;
+		border-radius:3px;
+		font-size:16px;
+		background:#FF6600;
+		color:#fff;
+		padding:0.5em 1.2em;
+		cursor: pointer; 
+	}
+
+	#login_popupWin form .loginbtn:hover, #register_popupWin form .registerbtn:hover{
+		background:#FF0033;
+	}
+
+	#login_popupWin form .registerlink, #register_popupWin form .loginlink{
+		float:right;
+		font-size:1em;
+		line-height:2.4em;
+		margin-right:1em;
+		color:blue;
+	}
+	
+	#login_popupWin form .registerlink:hover, #register_popupWin form .loginlink:hover{
+		cursor:pointer;
+		text-decoration:underline;
+	}
+	
+	.popupWin .popupWin_close:hover{
+		color:#FF6600;
+		cursor: pointer; 
+	 }
+</style>
+</head>
+<body>
+	<!--<div id="lightBox"></div>-->
+	<div id="3"  style="background-color:blue;">2123324343</div>
+	<div id="ew" style="position:absolute; top:50px; left:50px; width:500px; height:300px; background-color:green; ">
+		<div id="glkg" class="move" style="height:20px;background-color:blue;" >我是标题栏</div>
+		<p  style="height:279px;">哈哈，大家好，拖动了吧？</p>
+		<div class="move" style="height:1px;width:500px;background-color:blue;"></div>
+	</div>
+</body>
+</html>

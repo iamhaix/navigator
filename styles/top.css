@@ -1,0 +1,30 @@
+/*
+ * top-level层的样式
+ */
+
+#top-level {
+	background: #FFFFFF;
+	border-right: 1px solid #DDDDDD;
+	box-shadow: 5px 0px 20px #AAAAAA;
+	text-shadow: 0px 0px 5px orange;
+	font-family: Times New Roman;
+	width: 20px;
+	height: 100%;
+	position: absolute;
+	z-index: 99;
+}
+
+#top-level .put-btn {
+	position: absolute;
+	right: 0;
+	top: 280px;
+	height: 85px;
+	width: 16px;
+	background-color: #88DDFF;
+	text-align: center;
+	line-height: 85px;
+}
+
+#top-level .put-btn:hover {
+	cursor: pointer;
+}

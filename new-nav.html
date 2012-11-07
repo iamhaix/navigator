@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<title>新导航</title>
+<!--<script type="text/javascript" src="scripts/home.js"></script>-->
+<link rel="stylesheet" type="text/css" href="styles/reset.css" />
+<link href='http://fonts.googleapis.com/css?family=Play:700|Jura:600' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="styles/main.css" />
+<link rel="stylesheet" type="text/css" href="styles/popupWinStyle.css" />
+<link rel="stylesheet" type="text/css" href="styles/top.css" />
+</head>
+<body>
+	<!--弹窗层-->
+	<div id="lightBox"></div>
+	
+	<!--抽屉层-->
+	<div id="top-level">
+		<div class="put-btn">&gt;</div>
+	</div>
+	
+	<!--底层-->
+	<!--topbar-->
+	<div id="topbar">
+		<div class="topbar_left">今天是<span id="todaydate">2012年3月1日 二月初五 周四</span></div>
+		<div class="topbar_right">
+			<a href="#"><span class="changeSkin">换肤</span></a>
+			<a href="#"><span class="config">配置</span></a>
+			<a href="#"><span class="login" id="loginSpan">登录</span></a><em>|</em>
+			<a href="#"><span class="register" id="registerSpan">注册</span></a>
+			<a href="#"><span class="gotoVerStantard">切换到标准模式</span></a>
+		</div>
+	</div>
+	<!--skin-->
+	<div id="allSkin">这里是皮肤</div>
+	<!--wrap-->
+	<div id="wrap">
+		<div id="content">
+			<!--logo-->
+			<p id="logo"><img src="styles/images/logo-v0.2.png" alt="新导航" title="new-navigater"/></p>
+			<!--searchbox-->
+			<div id="searchbox">
+				<div class="toolbar">
+					<span><span class="title">Search</span><span class="set"><img src="styles/images/set.png" title="配置"/></span></span>
+					<em class="closediv">X</em>
+				</div>
+				<div class="clearfix">
+					<p id="searchtabs">
+						<a href="#" type="news">新闻</a>
+						<a href="#" type="webpage"><b>网页</b></a>
+						<a href="#" type="pictrue">图片</a>
+						<a href="#" type="music">MP3</a>
+						<a href="#" type="vedio">视频</a>
+						<a href="#" type="map">地图</a>
+					</p>
+					<form id="searchinput" action="http://www.baidu.com/s" target="_blank">
+						<span id="searchlogo"><a href="http://www.baidu.com"><img src="styles/images/search-logo-spirit.png" alt="searchlogo"/></a></span>
+						<span id="input-bg">
+							<input type="text" value x-webkit-speech autocomplete="off" id="search-kw" name="wd"/>
+							<input class="searchbtn" type="submit" value="百 度"/>
+							<span id="search-hide"><input type="hidden" value="utf-8" name="ie" /></span>
+						</span>
+					</form>
+					<p id="searchengine">
+						<label for="engine_baidu"><input type="radio" name="bengin" engine="baidu" checked />Baidu</label>
+						<label for="engine_google"><input type="radio" name="gengin" engine="google" />Google</label>
+						<label for="engine_bing"><input type="radio" name="iengin" engine="bing" />Bing</label>
+					</p>
+				</div>
+			</div>
+			<!--personal website-->
+			<div id="p_website">
+				<div class="toolbar">
+					<span><span class="title">Website</span><span class="set"><img src="styles/images/set.png" title="配置"/></span></span>
+					<em class="closediv">X</em>
+				</div>
+				<div class="clearfix siteitems">
+					<ul class="sites">
+						<li id="01">
+							<a href="http://www.baidu.com" target="_blank">
+								<img src="styles/images/default-favor.png" width="16" height="16"/>
+								<em class="site name">百度</em>
+							</a>
+						</li>
+						<li id="02">
+							<a href="http://www.google.com.hk" target="_blank">
+								<img src="styles/images/default-favor.png" width="16" height="16"/>
+								<em class="site name">谷歌</em>
+							</a>
+						</li>
+						<li id="03">
+							<a href="http://www.sina.com" target="_blank">
+								<img src="styles/images/default-favor.png" width="16" height="16"/>
+								<em class="site name">新浪</em>
+							</a>
+						</li>
+						<li id="04">
+							<a href="http://www.sohu.com" target="_blank">
+								<img src="styles/images/default-favor.png" width="16" height="16"/>
+								<em class="site name">搜狐</em>
+							</a>
+						</li>
+						<li id="05">
+							<a href="http://www.baidu.com" target="_blank">
+								<img src="styles/images/default-favor.png" width="16" height="16"/>
+								<em class="site name">百度</em>
+							</a>
+						</li>
+						<li id="06">
+							<a href="http://www.baidu.com" target="_blank">
+								<img src="styles/images/default-favor.png" width="16" height="16"/>
+								<em class="site name">百度</em>
+							</a>
+						</li>
+						<li id="07">
+							<a href="http://www.baidu.com" target="_blank">
+								<img src="styles/images/default-favor.png" width="16" height="16"/>
+								<em class="site name">百度</em>
+							</a>
+						</li>
+						<li id="08">
+							<a href="http://www.baidu.com" target="_blank">
+								<img src="styles/images/default-favor.png" width="16" height="16"/>
+								<em class="site name">百度</em>
+							</a>
+						</li>
+						<li id="09">
+							<a href="http://www.baidu.com" target="_blank">
+								<img src="styles/images/default-favor.png" width="16" height="16"/>
+								<em class="site name">百度</em>
+							</a>
+						</li>
+						<li id="10">
+							<a href="http://www.baidu.com" target="_blank">
+								<img src="styles/images/default-favor.png" width="16" height="16"/>
+								<em class="site name">百度</em>
+							</a>
+						</li>
+						<li id="11">
+							<a href="http://www.baidu.com" target="_blank">
+								<img src="styles/images/default-favor.png" width="16" height="16"/>
+								<em class="site name">百度</em>
+							</a>
+						</li>
+						<li id="12">
+							<a href="http://www.baidu.com" target="_blank">
+								<img src="styles/images/default-favor.png" width="16" height="16"/>
+								<em class="site name">百度</em>
+							</a>
+						</li>
+						<li id="13">
+							<a href="http://www.baidu.com" target="_blank">
+								<img src="styles/images/default-favor.png" width="16" height="16"/>
+								<em class="site name">百度</em>
+							</a>
+						</li>
+						<li id="14">
+							<a href="http://www.baidu.com" target="_blank">
+								<img src="styles/images/default-favor.png" width="16" height="16"/>
+								<em class="site name">百度</em>
+							</a>
+						</li>
+						<li id="15">
+							<a href="http://www.baidu.com" target="_blank">
+								<img src="styles/images/default-favor.png" width="16" height="16"/>
+								<em class="site name">百度</em>
+							</a>
+						</li>
+						<li id="16">
+							<a href="http://www.baidu.com" target="_blank">
+								<img src="styles/images/default-favor.png" width="16" height="16"/>
+								<em class="site name">百度</em>
+							</a>
+						</li>
+						<li id="17">
+							<a href="http://www.baidu.com" target="_blank">
+								<img src="styles/images/default-favor.png" width="16" height="16"/>
+								<em class="site name">百度</em>
+							</a>
+						</li>
+						<li id="18">
+							<a href="http://www.baidu.com" target="_blank">
+								<img src="styles/images/default-favor.png" width="16" height="16"/>
+								<em class="site name">百度</em>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="scripts/base.js"></script>
+	<script type="text/javascript" src="scripts/common.js"></script>
+	<script type="text/javascript" src="scripts/page.js"></script>
+</body>
+</html>
