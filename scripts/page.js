@@ -306,7 +306,9 @@
 	}
  };
  
+
  window.onload = function(){
+ 	
 	Z.init();
  }
  
